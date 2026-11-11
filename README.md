@@ -20,7 +20,19 @@ Android handheld. The game runs on the top screen. The bottom screen shows a liv
    then open the APK to install it.
 3. It installs as its own app, "M&M PSP", next to the official PPSSPP, and uses the same PSP folder for your
    games and saves.
-4. Bring your own game: no game files are included. See [Bring your own game](#bring-your-own-game).
+4. On first launch it asks for your PSP folder, like the official PPSSPP. Pick the same folder the official app uses
+   to share games and saves with it.
+5. Bring your own game: no game files are included. See [Bring your own game](#bring-your-own-game).
+
+What you need:
+
+- **A dual-screen device such as the AYN Thor.** The companion draws on the second screen. On a phone with one
+  screen it's plain PPSSPP.
+- **Monster Hunter Freedom Unite, FUComplete (`ULJM05500`).** That's the version it's tested on. The companion
+  turns on by itself when this game starts; with any other game it's plain PPSSPP. The US and EU releases are
+  recognised but not tested, so the HUD may show wrong values on them.
+- **Optional: "Display over other apps".** Android asks for it the first time you tap Minimize; the floating restore
+  button needs it. Without it, minimize shows a black screen with a restore tab instead.
 
 ## New features compared to base PPSSPP
 
