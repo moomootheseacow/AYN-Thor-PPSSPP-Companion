@@ -118,6 +118,9 @@ struct MemCheck {
 // BreakPoints cannot overlap, only one is allowed per address.
 // MemChecks can overlap, as long as their ends are different.
 // WARNING: MemChecks are not always tracked in HLE currently.
+// Thor Companion 7z: called on the emulator thread for every memory-check hit (null = off).
+extern void (*g_companionMemCheckHook)(u32 addr, bool write, int size, u32 pc);
+
 class BreakpointManager {
 public:
 	static const size_t INVALID_BREAKPOINT = -1;

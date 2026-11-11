@@ -2132,6 +2132,22 @@ if((MACOSX OR IOS) AND NOT LIBRETRO)
 		Core/Util/DarwinFileSystemServices.h)
 endif()
 
+# Thor Companion: built into the shared library itself (in the static 'native' library the linker dropped it,
+# because nothing in C++ calls it; only Java does, through JNI).
+if(ANDROID)
+	list(APPEND CoreExtra
+		Companion/CompanionJni.cpp
+		Companion/CompanionEngine.cpp
+		Companion/CompanionEngine.h
+		Companion/CompanionRenderer.cpp
+		Companion/CompanionTess.cpp
+		Companion/CompanionEmu.cpp
+		Companion/CompanionEmu.h
+		Companion/CompanionDraw.h
+		Companion/CompanionFont.h
+	)
+endif()
+
 # 'ppsspp_jni' on ANDROID, 'Core' everywhere else
 # SHARED on ANDROID, STATIC everywhere else
 add_library(${CoreLibName} ${CoreLinkType}

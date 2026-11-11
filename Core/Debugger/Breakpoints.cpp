@@ -31,6 +31,7 @@
 #include "Core/CoreTiming.h"
 
 BreakpointManager g_breakpoints;
+void (*g_companionMemCheckHook)(u32 addr, bool write, int size, u32 pc) = nullptr;   // Thor Companion 7z
 
 void MemCheck::Log(u32 addr, bool write, int size, u32 pc, const char *reason) const {
 	if (result & BREAK_ACTION_LOG) {
@@ -62,6 +63,7 @@ BreakAction MemCheck::Apply(u32 addr, bool write, int size, u32 pc) {
 
 BreakAction MemCheck::Action(u32 addr, bool write, int size, u32 pc, const char *reason) {
 	// Conditions have always already been checked if we get here.
+	if (g_companionMemCheckHook) g_companionMemCheckHook(addr, write, size, pc);   // Thor Companion 7z
 	Log(addr, write, size, pc, reason);
 	if (result & BREAK_ACTION_PAUSE) {
 		Core_Break(BreakReason::MemoryBreakpoint, start);

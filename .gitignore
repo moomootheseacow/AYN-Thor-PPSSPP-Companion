@@ -151,3 +151,21 @@ RAPrefs_PPSSPP.cfg
 cmake-build-*/
 
 /.vscode/
+
+# AYN Thor PPSSPP Companion: never commit game files, saves, save states, RAM dumps or builds
+*.iso
+*.cso
+*.ppst
+dump_*.bin
+dump_*.txt
+SAVEDATA/
+PSP/
+*.apk
+local.properties
+thor-companion/private/
+
+# Release signing (kept outside the repo)
+*.jks
+release.keystore
+keystore.properties
+signing.properties

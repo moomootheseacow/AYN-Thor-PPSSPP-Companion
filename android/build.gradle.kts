@@ -191,7 +191,8 @@ android {
 	}
 	productFlavors {
 		create("normal") {
-			applicationId = "org.ppsspp.ppsspp"
+			// Thor Companion: its own package, so it installs next to the official PPSSPP
+			applicationId = "org.ppsspp.ppsspp.thorcompanion"
 			dimension = "variant"
 			externalNativeBuild {
 				cmake {

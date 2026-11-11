@@ -870,6 +870,7 @@ public class PpssppActivity extends AppCompatActivity implements SensorEventList
 	public void onWindowFocusChanged(boolean hasFocus) {
 		Log.i(TAG, "onWindowFocusChanged");
 		super.onWindowFocusChanged(hasFocus);
+		org.ppsspp.ppsspp.companion.ThorCompanion.onFocus(hasFocus);   // Thor Companion 7n: log line only
 		updateSustainedPerformanceMode();
 		updateSystemUiVisibility();
 	}
@@ -995,6 +996,7 @@ public class PpssppActivity extends AppCompatActivity implements SensorEventList
 	protected void onDestroy() {
 		super.onDestroy();
 		lifeCycle.onDestroy();
+		org.ppsspp.ppsspp.companion.ThorCompanion.onDestroy();
 
 		if (javaGL) {
 			nativeRenderer = null;
@@ -1049,10 +1051,18 @@ public class PpssppActivity extends AppCompatActivity implements SensorEventList
 		lifeCycle.onStop();
 	}
 
+	// Thor Companion 7n: log line only (is PPSSPP still the top app while another app runs on the bottom screen?)
+	@Override
+	public void onTopResumedActivityChanged(boolean isTop) {
+		super.onTopResumedActivityChanged(isTop);
+		org.ppsspp.ppsspp.companion.ThorCompanion.onTopResumed(isTop);
+	}
+
 	@Override
 	protected void onPause() {
 		super.onPause();
 		lifeCycle.onPause();
+		org.ppsspp.ppsspp.companion.ThorCompanion.onPause();
 
 		InputManager inputManager = (InputManager)getSystemService(Context.INPUT_SERVICE);
 		inputManager.unregisterInputDeviceListener(inputDeviceListener);
@@ -1080,6 +1090,7 @@ public class PpssppActivity extends AppCompatActivity implements SensorEventList
 	protected void onResume() {
 		super.onResume();
 		lifeCycle.onResume();
+		org.ppsspp.ppsspp.companion.ThorCompanion.onResume(this);
 
 		updateSustainedPerformanceMode();
 		sizeManager.onResume();

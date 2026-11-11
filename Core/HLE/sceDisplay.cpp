@@ -61,6 +61,9 @@
 #include "GPU/Common/FramebufferManagerCommon.h"
 #include "GPU/Common/PostShader.h"
 #include "GPU/Debugger/Record.h"
+#ifdef __ANDROID__
+#include "Companion/CompanionEmu.h"   // Thor Companion: code patches on the emulator thread
+#endif
 
 struct FrameBufferState {
 	u32 topaddr;
@@ -513,6 +516,9 @@ static void DoFrameIdleTiming() {
 
 void hleEnterVblank(u64 userdata, int cyclesLate) {
 	int vbCount = userdata;
+#ifdef __ANDROID__
+	Companion::EmuVblank();   // Thor Companion
+#endif
 
 	VERBOSE_LOG(Log::sceDisplay, "Enter VBlank %i", vbCount);
 
